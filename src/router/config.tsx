@@ -1,7 +1,6 @@
 import React from 'react'
 import Login from '../views/login/Login'
 import { default as Layout } from '../views/layout'
-import useAuth from '@/hooks/useAuth'
 import Table from '../views/table'
 import Doc from '../views/doc'
 import { Navigate } from 'react-router-dom'
@@ -27,11 +26,7 @@ const routerCofig = [
   },
   {
     path: '/dashboard',
-    element: (
-      <RequireAuth>
-        <Layout />
-      </RequireAuth>
-    ),
+    element: <Layout />,
     children: [
       {
         path: 'index',
@@ -41,11 +36,7 @@ const routerCofig = [
   },
   {
     path: '/table',
-    element: (
-      <RequireAuth>
-        <Layout />
-      </RequireAuth>
-    ),
+    element: <Layout />,
     children: [
       {
         path: 'index',
@@ -55,11 +46,7 @@ const routerCofig = [
   },
   {
     path: '/doc',
-    element: (
-      <RequireAuth>
-        <Layout />
-      </RequireAuth>
-    ),
+    element: <Layout />,
     children: [
       {
         path: 'index',
@@ -69,11 +56,7 @@ const routerCofig = [
   },
   {
     path: '/home',
-    element: (
-      <RequireAuth>
-        <Layout />
-      </RequireAuth>
-    ),
+    element: <Layout />,
     children: [
       {
         path: '*',
@@ -90,9 +73,3 @@ const routerCofig = [
   }
 ]
 export default routerCofig
-
-function RequireAuth({ children }: any) {
-  const { authed } = useAuth()
-  console.log(authed)
-  return authed !== '-1' ? children : <Navigate to="/login" replace />
-}

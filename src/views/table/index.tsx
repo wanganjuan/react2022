@@ -9,32 +9,7 @@ import { default as Form } from './Form'
 const { Column, ColumnGroup } = Table
 // 分页不进行抽离了
 function Index() {
-  const [visible, setVisible] = useState(false)
-  const [filter, setFilter] = useState({})
-  const { tableData, total, _list } = useList(list)
-  const [query, setQuery] = useState<any>({
-    curpage: 1,
-    size: 20
-  })
-  const formChange = (data: any) => {
-    setFilter(data)
-  }
-  const changePage = (page: any, pageSize: any) => {
-    setQuery({
-      ...query,
-      curpage: page,
-      size: pageSize
-    })
-  }
-  useEffect(() => {
-    _list({ ...query, ...filter })
-  }, [query, filter])
-  const close = (e: any): any => {
-    if (e) {
-      _list({ ...query, ...filter })
-    }
-    setVisible(false)
-  }
+  const { tableData, total, query, changePage, visible, setVisible, close, formChange } = useList(list)
   return (
     <>
       <Filter changeFilter={formChange}>
