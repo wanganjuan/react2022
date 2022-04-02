@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Layout } from 'antd'
 import { Outlet } from 'react-router-dom'
 import { default as ElHeader } from './header'
 import { default as ElSider } from './sider'
 import useAuth from '@/hooks/useAuth'
 import { Navigate } from 'react-router-dom'
+import { useLocation, useSearchParams, useNavigate } from 'react-router-dom'
 const { Footer, Content } = Layout
 function RequireAuth({ children }: any) {
   const { authed } = useAuth()
-  console.log(authed)
   return authed !== '-1' ? children : <Navigate to="/login" replace />
 }
-function Index() {
+function Index(props: any) {
+  console.log('main')
   return (
     <RequireAuth>
       <Layout className="height100">
@@ -19,9 +20,8 @@ function Index() {
         <Layout>
           <ElHeader />
           <Content>
-            <div className="main-content">
-              <Outlet />
-            </div>
+            {console.log('content')}
+            <div className="main-content">{props.children}</div>
           </Content>
           {/* <Footer>Footer</Footer> */}
         </Layout>

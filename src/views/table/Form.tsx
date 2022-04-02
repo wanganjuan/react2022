@@ -12,7 +12,9 @@ const formItemLayout = {
 }
 function FormTemplate(props: IProps) {
   const { visible, close } = props
-  const onCancel = () => {}
+  const onCancel = () => {
+    close(false)
+  }
   const [form] = Form.useForm()
   const onOk = async () => {
     try {

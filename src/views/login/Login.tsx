@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './login.styl'
 import { JSEncrypt } from 'jsencrypt'
 import { message } from 'antd'
@@ -12,6 +12,10 @@ function Login() {
     }
   }
   const location = useLocation()
+  console.log(location)
+  useEffect(() => {
+    console.log(location, 123)
+  }, [location])
   const { login } = useAuth()
   const [query] = useSearchParams()
   const navigate = useNavigate()
