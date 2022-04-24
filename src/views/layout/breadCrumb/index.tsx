@@ -47,8 +47,12 @@ const BreadCrumb = () => {
     }
   }
   const breadcrumbList = []
-  breadcrumbList.push(prouter)
-  breadcrumbList.push(curRouter)
+  if (prouter) {
+    breadcrumbList.push(prouter)
+  }
+  if (curRouter) {
+    breadcrumbList.push(curRouter)
+  }
   return (
     <div className="Breadcrumb-container">
       <Breadcrumb>

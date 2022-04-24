@@ -34,6 +34,10 @@ function useList(list: Function) {
   }
   useEffect(() => {
     _list({ ...query, ...filter })
+    return () => {
+      setTableData([])
+      setTotal(0)
+    }
   }, [query, filter])
   return {
     tableData,
